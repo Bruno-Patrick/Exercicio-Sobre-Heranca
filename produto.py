@@ -6,7 +6,6 @@ class Produto:
         self._nome = nome
         self._precoDeCompra = precoDeCompra
         self._quantidadeEstoque = quantidadeEstoque
-        self._promocao = False
         self._preco_original = precoDeCompra
         self._historico = Historico()
 
@@ -18,7 +17,6 @@ class Produto:
         return promocao
 
     def definePrecoVenda(self, valor):
-        self._promocao = False
         self._precoDeCompra = valor
 
     def vendeProduto(self, valor):

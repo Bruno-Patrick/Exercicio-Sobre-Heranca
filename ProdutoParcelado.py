@@ -6,7 +6,6 @@ class ProdutoParcelado(Produto):
         self._produto = produto
 
     def definePrecoVenda(self, parcelas):
-        self._produto._promocao = False
         self._produto._precoDeCompra = self._produto._preco_original
         juros = parcelas * 0.05
         self._produto._precoDeCompra += juros
