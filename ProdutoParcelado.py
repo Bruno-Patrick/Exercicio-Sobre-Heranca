@@ -5,8 +5,13 @@ class ProdutoParcelado(Produto):
     def __init__(self, produto):
         self._produto = produto
 
-    def definePrecoVenda(self):
-        self._produto.set_precoOriginal()
-        juros = self._produto.get_preco()*0.05
-        preco = self._produto.get_preco() + juros
-        return self._produto.definePrecoVenda(preco)
+    def definePrecoVenda(self, parcelas):
+        self._produto._promocao = False
+        self._produto._precoDeCompra = self._produto._preco_original
+        juros = parcelas * 0.05
+        self._produto._precoDeCompra += juros
+        self._produto._precoDeCompra = self._produto._precoDeCompra/parcelas
+        self._produto._quantidadeEstoque -= 1
+        self._produto_historico.append(f'Compra de 1 {self._nome} parcelado em {parcelas}x' +
+        'por R${self._produto._precoDeCompra} cada parcela')
+        return self._produto._precoDeCompra

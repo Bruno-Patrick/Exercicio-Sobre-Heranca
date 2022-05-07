@@ -5,9 +5,9 @@ class ProdutoPromocional(Produto):
         self._produto = produto
 
     def definePrecoVenda(self):
-        self._produto.set_precoOriginal()
-        preco = self._produto.get_preco()
-        preco = preco - (preco*0.20)
-        self._produto.set_boolean(True)
-        return self._produto.definePrecoVenda(preco)
-        
+        self._produto._promocao = True
+        self._produto._precoDeCompra = self._produto._preco_original
+        self._produto._precoDeCompra -= self._produto._precoDeCompra * 0.20
+        self._produto._quantidadeEstoque -= 1
+        self._produto_historico.append(f'Compra de 1 {self._nome} com desconto de 20% por R${self._produto._precoDeCompra}')
+        return self._produto._precoDeCompra
